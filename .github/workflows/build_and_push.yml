@@ -22,7 +22,7 @@ jobs:
         run: singularity build --fakeroot data_transfer.sif examples/data_transfer/data_transfer.def
 
       - name: Login to Sylabs Cloud
-        run: echo "sylab-cloud-token" | singularity remote login --token
+        run: echo "sylab-cloud-token" | singularity remote login --tokenfile sylabs_token.txt
 
       - name: Push to Sylabs Cloud Library
-        run: singularity push yolov5.sif library://haftommh/default/yolov5:latest
+        run: singularity push data_transfer.sif library://haftommh/default/data_transfer:latest
