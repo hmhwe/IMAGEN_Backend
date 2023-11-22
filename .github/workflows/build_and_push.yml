@@ -19,7 +19,7 @@ jobs:
                singularity-version: 3.8.3
 
       - name: Build Singularity Container
-        run: singularity build --fakeroot yolov5.sif examples/data_transfer/data_transfer.def
+        run: singularity build --fakeroot data_transfer.sif examples/data_transfer/data_transfer.def
 
       - name: Login to Sylabs Cloud
         run: echo "sylab-cloud-token" | singularity remote login --token
