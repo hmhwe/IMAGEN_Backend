@@ -8,7 +8,10 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-
+    
+    env:
+      SYLABS_CLOUD_TOKEN: ${{ secrets.SYLABS_CLOUD_TOKEN }}
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,7 +25,7 @@ jobs:
         run: singularity build --fakeroot data_transfer.sif examples/data_transfer/data_transfer.def
 
       - name: Login to Sylabs Cloud
-        run: echo "sylab-cloud-token" | singularity remote login --tokenfile sylabs_token.txt
+        run: echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
 
       - name: Push to Sylabs Cloud Library
         run: singularity push -U data_transfer.sif library://haftommh/default/data_transfer:latest
