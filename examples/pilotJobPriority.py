@@ -5,14 +5,14 @@ import picasconfig
 import json
 
 #picas imports
-from picas.actors import RunActor
-from picas.clients import CouchDB
-from picas.iterators import TaskViewIterator
-from picas.iterators import EndlessViewIterator
-from picas.iterators import PrioritizedViewIterator
-from picas.modifiers import BasicTokenModifier
-from picas.executers import execute
-from picas.util import Timer
+from picasclient.picas.actors import RunActor
+from picasclient.picas.clients import CouchDB
+from picasclient.picas.iterators import TaskViewIterator
+from picasclient.picas.iterators import EndlessViewIterator
+from picasclient.picas.iterators import PrioritizedViewIterator
+from picasclient.picas.modifiers import BasicTokenModifier
+from picasclient.picas.executers import execute
+from picasclient.picas.util import Timer
 
 class Actor(RunActor):
     
