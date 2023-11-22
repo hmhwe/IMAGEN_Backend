@@ -1,0 +1,26 @@
+name: Singularity Build and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Singularity
+        uses: sylabs/setup-singularity-action@v1
+
+      - name: Build Singularity Container
+        run: singularity build yolov5.sif yolov5.def
+
+      - name: Login to Sylabs Cloud
+        run: echo "sylab-cloud-token" | singularity remote login --token
+
+      - name: Push to Sylabs Cloud Library
+        run: singularity push yolov5.sif library://haftommh/default/yolov5:latest
