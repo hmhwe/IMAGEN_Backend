@@ -30,12 +30,9 @@ jobs:
         run: |
           for def_file in ${{ steps.files.outputs.added_modified }}; do
             if [[ "${def_file}" == *".def" ]]; then
-              - name: Build Singularity Container
-                run singularity build "${def_file%.def}.sif" "$def_file"
-              - name: Login to Sylabs Cloud
-                run echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
-              - name: Push to Sylabs Cloud Library
-                run singularity push "${def_file%.def}.sif" library://haftommh/default/"${def_file%.def}":latest
+                singularity build "${def_file%.def}.sif" "$def_file"
+                echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
+                singularity push -U "${def_file%.def}.sif" library://haftommh/default/"${def_file%.def}":latest
             fi
           done
 
