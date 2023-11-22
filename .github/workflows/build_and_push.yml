@@ -25,4 +25,4 @@ jobs:
         run: echo "sylab-cloud-token" | singularity remote login --tokenfile sylabs_token.txt
 
       - name: Push to Sylabs Cloud Library
-        run: singularity push data_transfer.sif library://haftommh/default/data_transfer:latest
+        run: singularity push -U data_transfer.sif library://haftommh/default/data_transfer:latest
