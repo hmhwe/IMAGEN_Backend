@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: python:3.9
+
+#install rclone and dependencies
+%post
+        apt-get update && apt-get install -y \
+                curl
+        curl https://rclone.org/install.sh | bash
+        apt-get install -y python3-pip
+        pip3 install rclone-python
+
+      
+
+%environment
+
+%runscript
+        python data_transfer.py "$1" "$2"
