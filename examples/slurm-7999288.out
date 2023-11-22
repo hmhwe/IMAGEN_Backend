@@ -1,0 +1,19 @@
+Connected to the database imagen sucessfully. Now starting work...
+-----------------------
+Working on token: token_11
+_id token_11
+_rev 61-8a831d433da8cc7b39ba9e48f71558d8
+type token
+task_type YOLOv5
+lock 1700671629
+done 0
+hostname wn-hb-02.spider.surfsara.nl
+gpu 0
+CONF 0.25
+WEIGHTS 
+EPOCHS 6
+IMG 640
+BATCH_SIZE 128
+scrub_count 0
+exit_code 
+-----------------------

@@ -1,0 +1,5 @@
+couchdb
+
+[test]
+flake8
+nose

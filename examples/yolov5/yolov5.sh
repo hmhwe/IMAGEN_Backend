@@ -19,7 +19,8 @@ scratch="$TMPDIR"/train_result
 DESTINATION="surfDcache:/yolo_train_result/" 
 
 
-singularity run yolov5.sif 
+
+singularity run "$TMPDIR"/myImages/yolov5.sif 
 
 
 #singularity run library://haftommh/default/yolov5:latest

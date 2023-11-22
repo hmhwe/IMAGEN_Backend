@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "token_1",
+        "type": "token",
+        "task_type": "YOLOv5",
+        "lock": 0,
+        "done": 0,
+        "hostname": "",
+        "gpu": "0",
+        "CONF": 0.25,
+        "WEIGHTS": "",
+        "EPOCHS": 6,
+        "IMG": 640,
+        "BATCH_SIZE": 128,
+        "scrub_count": 0,
+        "exit_code": ""
+
+    }
+
+]

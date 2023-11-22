@@ -5,13 +5,13 @@ import picasconfig
 import json
 
 #picas imports
-from picasclient.picas.actors import RunActor
-from picasclient.picas.clients import CouchDB
-from picasclient.picasclient.picas.iterators import TaskViewIterator
-from picasclient.picas.iterators import EndlessViewIterator
-from picasclient.picas.modifiers import BasicTokenModifier
-from picasclient.picas.executers import executegi
-from picasclient.picas.util import Timer
+from picas.actors import RunActor
+from picas.clients import CouchDB
+from picas.iterators import TaskViewIterator
+from picas.iterators import EndlessViewIterator
+from picas.modifiers import BasicTokenModifier
+from picas.executers import execute
+from picas.util import Timer
 
 class Actor(RunActor):
     
@@ -24,8 +24,8 @@ class Actor(RunActor):
         
         
         self.script_mapping = {
-            "YOLOv5": "./yolov5.sh",
-            "Video_Synchronization": "./data_cleaning.sh",
+            "YOLOv5": "./yolov5/yolov5.sh",
+            "Video_Synchronization": "/dataCleaning/data_cleaning.sh",
             # Add mappings here 
         }
         
