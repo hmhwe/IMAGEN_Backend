@@ -1,3 +1,4 @@
+
 name: Singularity Build and Push
 
 on:
@@ -8,24 +9,36 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    
+
     env:
       SYLABS_CLOUD_TOKEN: ${{ secrets.SYLABS_CLOUD_TOKEN }}
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Get changed files
+        id: files
+        uses: jitterbit/get-changed-files@v1
+
       - name: Set up Singularity
         uses: eWaterCycle/setup-singularity@v7
         with:
-               singularity-version: 3.8.3
+          singularity-version: 3.8.3
 
-      - name: Build Singularity Container
-        run: singularity build --fakeroot data_transfer.sif examples/data_transfer/data_transfer.def
+      - name: Build and Push Singularity Container
+        run: |
+          for def_file in ${{ steps.files.outputs.added_modified }}; do
+            if [[ "${def_file}" == *".def" ]]; then
+              - name: Build Singularity Container
+                run singularity build "${def_file%.def}.sif" "$def_file"
+              - name: Login to Sylabs Cloud
+                run echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
+              - name: Push to Sylabs Cloud Library
+                run singularity push "${def_file%.def}.sif" library://haftommh/default/"${def_file%.def}":latest
+            fi
+          done
 
-      - name: Login to Sylabs Cloud
-        run: echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
 
-      - name: Push to Sylabs Cloud Library
-        run: singularity push -U data_transfer.sif library://haftommh/default/data_transfer:latest
+
+
