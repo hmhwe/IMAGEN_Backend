@@ -10,7 +10,7 @@ from picas.clients import CouchDB
 from picas.iterators import TaskViewIterator
 from picas.iterators import EndlessViewIterator
 from picas.modifiers import BasicTokenModifier
-from picas.executers import execute
+from picas.executers import executegi
 from picas.util import Timer
 
 class Actor(RunActor):
