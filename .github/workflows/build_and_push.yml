@@ -14,7 +14,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Singularity
-        uses: sylabs/setup-singularity-action@v1
+        uses: eWaterCycle/setup-singularity@v7
+        with:
+               singularity-version: 3.8.3
 
       - name: Build Singularity Container
         run: singularity build yolov5.sif yolov5.def
