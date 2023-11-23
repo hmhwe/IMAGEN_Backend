@@ -6,11 +6,7 @@ From: alpine:3.14
     apk --no-cache add \
         git \
         python3 \
-        python3-dev \
-        py3-pip \
-        build-base \
-        libressl-dev \
-        libffi-dev \
+        python3-pip \
         libsm6 \
         libxext6 \
         libxrender-dev \
