@@ -1,7 +1,7 @@
 Bootstrap: docker
 From: python:3.9
 
-#install dependencies and libraries
+#install dependencies 
 %post
         apt-get update && apt-get install -y \
                 curl
