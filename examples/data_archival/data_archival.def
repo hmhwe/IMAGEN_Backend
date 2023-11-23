@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ubuntu:20.04
 
 %post
-# Install necessary libraries and dependencies
+# Install necessary libraries
 apt-get update
 apt-get install -y python3 python3-pip
 
