@@ -1,14 +1,15 @@
 Bootstrap: docker
-From: alpine:3.14
+From: python:3.8-alpine
 
 %post
-    apk --no-cache add git python3 py3-pip build-base libressl-dev libffi-dev libsm6 libxext6 libxrender wget unzip
+    apk --no-cache add git build-base libressl-dev libffi-dev wget unzip
+    pip install --upgrade pip
     git clone https://github.com/ultralytics/yolov5 /yolov5
-    pip3 install -r /yolov5/requirements.txt
+    pip install -r /yolov5/requirements.txt
 
     mkdir -p /datasets 
     wget -P /datasets https://ultralytics.com/assets/coco128.zip
     unzip /datasets/coco128.zip -d /datasets
 
 %runscript
-    python3 /yolov5/train.py --data /yolov5/data/coco128.yaml --epochs "$EPOCHS" --weights "$WEIGHTS" --img "$IMG" --batch-size "$BATCH_SIZE" --cfg /yolov5/models/yolov5m.yaml --project "$TMPDIR"/train_result
+    python /yolov5/train.py --data /yolov5/data/coco128.yaml --epochs "$EPOCHS" --weights "$WEIGHTS" --img "$IMG" --batch-size "$BATCH_SIZE" --cfg /yolov5/models/yolov5m.yaml --project "$TMPDIR"/train_result
