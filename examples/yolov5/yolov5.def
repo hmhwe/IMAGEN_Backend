@@ -1,12 +1,16 @@
 Bootstrap: docker
-From: python:3.8-alpine
+From: alpine:3.14
 
 %post
-    apk --no-cache add git build-base libressl-dev libffi-dev wget unzip
-    pip install --upgrade pip
-    git clone https://github.com/ultralytics/yolov5 /yolov5
-    pip install -r /yolov5/requirements.txt
+    apk --no-cache add git python3 py3-pip build-base libressl-dev libffi-dev libsm6 libxext6 libxrender wget unzip
 
+    # Install PyTorch and related libraries
+    python3 -m pip install torch==1.7.0+cu101 torchvision==0.8.0+cu101 torchaudio==0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
+
+    # Clone YOLOv5 repository
+    git clone https://github.com/ultralytics/yolov5 /yolov5
+    python3 -m pip install -r /yolov5/requirements.tx
+    
     mkdir -p /datasets 
     wget -P /datasets https://ultralytics.com/assets/coco128.zip
     unzip /datasets/coco128.zip -d /datasets
