@@ -26,13 +26,24 @@ jobs:
         with:
           singularity-version: 3.8.3
 
+       #If there is change in any of the definition files, build and push it to repo (sylab cloud)
+     
       - name: Build and Push Singularity Container
         run: |
           for def_file in ${{ steps.files.outputs.added_modified }}; do
             if [[ "${def_file}" == *".def" ]]; then
-                singularity build --fakeroot "${def_file%.def}.sif" "$def_file"
-                echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
-                singularity push -U "${def_file%.def}.sif" library://haftommh/default/"${def_file%.def}":latest
+              
+              container_name="${def_file%.def}.sif"
+              singularity build --fakeroot "${container_name}" "${def_file}"
+
+              # Constructing the library path 
+              library_path="library://haftommh/default/$(basename "${def_file%.def}")"
+
+              #Login to sylab repo
+              echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
+             
+              #Push image to sylab repo
+              singularity push -U --library "${library_path}:latest" "${container_name}"
             fi
           done
 
