@@ -30,17 +30,23 @@ jobs:
      
       - name: Build and Push Singularity Container
         run: |
+          #Login to sylab repo
+          echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
+          
           for def_file in ${{ steps.files.outputs.added_modified }}; do
             if [[ "${def_file}" == *".def" ]]; then
               
+              #Construct container name
               container_name="${def_file%.def}.sif"
+
+              #Build the singularity image
               singularity build --fakeroot "${container_name}" "${def_file}"
-
-              # Constructing the library path 
-              library_path="library://haftommh/default/$(basename "${def_file%.def}")"
-
-              #Login to sylab repo
-              echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
+              
+              #Extract the filename
+              filename=$(basename "${def_file}" .def)
+                       
+              # Construct the library path 
+              library_path="library://haftommh/default/${filename}"
              
               #Push image to sylab repo
               singularity push -U "${container_name}" "${library_path}:latest"
