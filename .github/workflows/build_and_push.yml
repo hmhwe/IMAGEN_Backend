@@ -30,7 +30,7 @@ jobs:
         run: |
           for def_file in ${{ steps.files.outputs.added_modified }}; do
             if [[ "${def_file}" == *".def" ]]; then
-                singularity build "${def_file%.def}.sif" "$def_file"
+                singularity build --fakeroot "${def_file%.def}.sif" "$def_file"
                 echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
                 singularity push -U "${def_file%.def}.sif" library://haftommh/default/"${def_file%.def}":latest
             fi
