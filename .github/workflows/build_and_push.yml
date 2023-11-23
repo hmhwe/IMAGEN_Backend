@@ -43,7 +43,7 @@ jobs:
               echo "$SYLABS_CLOUD_TOKEN" | singularity remote login
              
               #Push image to sylab repo
-              singularity push -U --library "${container_name}" "${library_path}:latest"
+              singularity push -U "${container_name}" "${library_path}:latest"
             fi
           done
 
