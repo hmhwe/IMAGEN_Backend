@@ -47,6 +47,7 @@ jobs:
                        
               # Construct the library path 
               library_path="library://haftommh/default/${filename}"
+              echo "Library Path:${library_path}"
              
               #Push image to sylab repo
               singularity push -U "${container_name}" "${library_path}:latest"
