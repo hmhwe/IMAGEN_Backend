@@ -5,6 +5,7 @@ import random
 import picasconfig
 import json
 
+
 def getNextIndex():
     db = get_db()
 
