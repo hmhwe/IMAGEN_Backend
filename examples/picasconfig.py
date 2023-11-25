@@ -1,4 +1,6 @@
+import os
+
 PICAS_HOST_URL="https://picas.grid.sara.nl:6984/"
 PICAS_DATABASE="imagen"
-PICAS_USERNAME="imagen-hhailu"
-PICAS_PASSWORD="fuLLham1234;"
+PICAS_USERNAME= os.getenv("PICAS_USERNAME")
+PICAS_PASSWORD=os.getenv("PICAS_PASSWORD")
