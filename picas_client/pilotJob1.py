@@ -81,15 +81,10 @@ class Actor(RunActor):
         for key, value in token.doc.items():
             print(key, value)
         print("-----------------------")
-    
-
-    
+        
         task_name = token['task_type']
         
-              
-        
-    
-        
+           
         if task_name == "YOLOv5":
             self.process_yolov5_task(token, task_name)
         elif task_name == "Video_Synchronization":

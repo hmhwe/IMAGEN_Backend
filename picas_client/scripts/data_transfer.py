@@ -13,7 +13,6 @@ def transfer_data_source_to_destination(source_path, destination_path):
     
     
 
-# Call the function to perform the data transfer with command-line arguments
 if __name__ == "__main__":
     if len(sys.argv) !=3:
         print("Usage: python data_transfer.py <source_path> <destination_path>")

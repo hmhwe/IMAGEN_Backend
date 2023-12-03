@@ -19,10 +19,10 @@ scratch="$TMPDIR"/train_result
 DESTINATION="surfDcache:/yolo_train_result/" 
 
 
+#From local
+singularity run ./scripts/yolov5.sif 
 
-singularity run "$TMPDIR"/myImages/yolov5.sif 
-
-
+#From sylab repo
 #singularity run library://haftommh/default/yolov5:latest
 
-singularity run library://haftom12/default/data_transfer:latest "$scratch" "$DESTINATION"
+singularity run library://haftommh/default/data_transfer:latest "$scratch" "$DESTINATION"

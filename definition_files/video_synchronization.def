@@ -1,0 +1,23 @@
+Bootstrap: docker
+From: python:3.9
+
+%post
+
+	export DEBIAN_FRONTEND=noninteractive
+        apt-get update && apt-get install -y  \
+        ffmpeg
+
+        pip3 install easyocr
+        pip3 install openpyxl
+        pip3 install tqdm
+        pip3 install pandas
+        pip3 install Pillow==9.5.0
+        
+  
+%environment
+
+
+%runscript
+        python3 video_synchronization.py "$1" "$2"
+        
+

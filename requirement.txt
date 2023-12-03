@@ -1,0 +1,5 @@
+#dependencies
+
+python-dotenv==1.0.0
+git+https://github.com/sara-nl/picasclient.git
+
