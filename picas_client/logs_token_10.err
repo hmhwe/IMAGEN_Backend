@@ -1,95 +1,0 @@
-[34m[1mtrain: [0mweights=, cfg=/yolov5/models/yolov5m.yaml, data=/yolov5/data/coco128.yaml, hyp=../../../../yolov5/data/hyps/hyp.scratch-low.yaml, epochs=2, batch_size=128, imgsz=640, rect=False, resume=False, nosave=False, noval=False, noautoanchor=False, noplots=False, evolve=None, bucket=, cache=None, image_weights=False, device=, multi_scale=False, single_cls=False, optimizer=SGD, sync_bn=False, workers=8, project=/tmp/train_result, name=exp, exist_ok=False, quad=False, cos_lr=False, label_smoothing=0.0, patience=100, freeze=[0], save_period=-1, seed=0, local_rank=-1, entity=None, upload_dataset=False, bbox_interval=-1, artifact_alias=latest
-error: cannot open .git/FETCH_HEAD: Read-only file system
-YOLOv5 🚀 v7.0-247-g3f02fde Python-3.8.10 torch-2.1.1+cu121 CPU
-
-[34m[1mhyperparameters: [0mlr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=0.05, cls=0.5, cls_pw=1.0, obj=1.0, obj_pw=1.0, iou_t=0.2, anchor_t=4.0, fl_gamma=0.0, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0
-[34m[1mComet: [0mrun 'pip install comet_ml' to automatically track and visualize YOLOv5 🚀 runs in Comet
-[34m[1mTensorBoard: [0mStart with 'tensorboard --logdir /tmp/train_result', view at http://localhost:6006/
-
-                 from  n    params  module                                  arguments                     
-  0                -1  1      5280  models.common.Conv                      [3, 48, 6, 2, 2]              
-  1                -1  1     41664  models.common.Conv                      [48, 96, 3, 2]                
-  2                -1  2     65280  models.common.C3                        [96, 96, 2]                   
-  3                -1  1    166272  models.common.Conv                      [96, 192, 3, 2]               
-  4                -1  4    444672  models.common.C3                        [192, 192, 4]                 
-  5                -1  1    664320  models.common.Conv                      [192, 384, 3, 2]              
-  6                -1  6   2512896  models.common.C3                        [384, 384, 6]                 
-  7                -1  1   2655744  models.common.Conv                      [384, 768, 3, 2]              
-  8                -1  2   4134912  models.common.C3                        [768, 768, 2]                 
-  9                -1  1   1476864  models.common.SPPF                      [768, 768, 5]                 
- 10                -1  1    295680  models.common.Conv                      [768, 384, 1, 1]              
- 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']          
- 12           [-1, 6]  1         0  models.common.Concat                    [1]                           
- 13                -1  2   1182720  models.common.C3                        [768, 384, 2, False]          
- 14                -1  1     74112  models.common.Conv                      [384, 192, 1, 1]              
- 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']          
- 16           [-1, 4]  1         0  models.common.Concat                    [1]                           
- 17                -1  2    296448  models.common.C3                        [384, 192, 2, False]          
- 18                -1  1    332160  models.common.Conv                      [192, 192, 3, 2]              
- 19          [-1, 14]  1         0  models.common.Concat                    [1]                           
- 20                -1  2   1035264  models.common.C3                        [384, 384, 2, False]          
- 21                -1  1   1327872  models.common.Conv                      [384, 384, 3, 2]              
- 22          [-1, 10]  1         0  models.common.Concat                    [1]                           
- 23                -1  2   4134912  models.common.C3                        [768, 768, 2, False]          
- 24      [17, 20, 23]  1    343485  models.yolo.Detect                      [80, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [192, 384, 768]]
-YOLOv5m summary: 291 layers, 21190557 parameters, 21190557 gradients, 49.2 GFLOPs
-
-[34m[1moptimizer:[0m SGD(lr=0.01) with parameter groups 79 weight(decay=0.0), 82 weight(decay=0.001), 82 bias
-[34m[1mtrain: [0mScanning /datasets/coco128/labels/train2017...:   0%|          | 0/128 [00:00<?, ?it/s][34m[1mtrain: [0mScanning /datasets/coco128/labels/train2017... 1 images, 0 backgrounds, 0 corrupt:   1%|          | 1/128 [00:00<00:20,  6.25it/s][34m[1mtrain: [0mScanning /datasets/coco128/labels/train2017... 112 images, 2 backgrounds, 0 corrupt:  89%|████████▉ | 114/128 [00:00<00:00, 535.80it/s][34m[1mtrain: [0mScanning /datasets/coco128/labels/train2017... 126 images, 2 backgrounds, 0 corrupt: 100%|██████████| 128/128 [00:00<00:00, 478.70it/s]
-[34m[1mtrain: [0mWARNING ⚠️ Cache directory /datasets/coco128/labels is not writeable: [Errno 30] Read-only file system: '/datasets/coco128/labels/train2017.cache.npy'
-[34m[1mval: [0mScanning /datasets/coco128/labels/train2017...:   0%|          | 0/128 [00:00<?, ?it/s][34m[1mval: [0mScanning /datasets/coco128/labels/train2017... 1 images, 0 backgrounds, 0 corrupt:   1%|          | 1/128 [00:00<00:22,  5.59it/s][34m[1mval: [0mScanning /datasets/coco128/labels/train2017... 126 images, 2 backgrounds, 0 corrupt: 100%|██████████| 128/128 [00:00<00:00, 713.99it/s]
-[34m[1mval: [0mWARNING ⚠️ Cache directory /datasets/coco128/labels is not writeable: [Errno 30] Read-only file system: '/datasets/coco128/labels/train2017.cache.npy'
-
-[34m[1mAutoAnchor: [0m4.27 anchors/target, 0.994 Best Possible Recall (BPR). Current anchors are a good fit to dataset ✅
-Plotting labels to /tmp/train_result/exp/labels.jpg... 
-Image sizes 640 train, 640 val
-Using 8 dataloader workers
-Logging results to [1m/tmp/train_result/exp[0m
-Starting training for 2 epochs...
-
-      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
-  0%|          | 0/1 [00:00<?, ?it/s]        0/1         0G     0.1087    0.07822     0.1052       1750        640:   0%|          | 0/1 [05:22<?, ?it/s]        0/1         0G     0.1087    0.07822     0.1052       1750        640: 100%|██████████| 1/1 [05:22<00:00, 322.17s/it]        0/1         0G     0.1087    0.07822     0.1052       1750        640: 100%|██████████| 1/1 [05:22<00:00, 322.17s/it]
-                 Class     Images  Instances          P          R      mAP50   mAP50-95:   0%|          | 0/1 [00:00<?, ?it/s]                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 1/1 [01:42<00:00, 102.52s/it]                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 1/1 [01:42<00:00, 102.52s/it]
-                   all        128        929          0          0          0          0
-
-      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
-  0%|          | 0/1 [00:00<?, ?it/s]        1/1         0G     0.1099    0.06941     0.1063       1531        640:   0%|          | 0/1 [05:05<?, ?it/s]        1/1         0G     0.1099    0.06941     0.1063       1531        640: 100%|██████████| 1/1 [05:05<00:00, 305.97s/it]        1/1         0G     0.1099    0.06941     0.1063       1531        640: 100%|██████████| 1/1 [05:05<00:00, 305.97s/it]
-                 Class     Images  Instances          P          R      mAP50   mAP50-95:   0%|          | 0/1 [00:00<?, ?it/s]                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 1/1 [01:42<00:00, 102.36s/it]                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 1/1 [01:42<00:00, 102.36s/it]
-                   all        128        929          0          0          0          0
-
-2 epochs completed in 0.232 hours.
-Optimizer stripped from /tmp/train_result/exp/weights/last.pt, 42.9MB
-Optimizer stripped from /tmp/train_result/exp/weights/best.pt, 42.9MB
-
-Validating /tmp/train_result/exp/weights/best.pt...
-Fusing layers... 
-YOLOv5m summary: 212 layers, 21172173 parameters, 0 gradients, 48.9 GFLOPs
-                 Class     Images  Instances          P          R      mAP50   mAP50-95:   0%|          | 0/1 [00:00<?, ?it/s]                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 1/1 [01:37<00:00, 97.16s/it]                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 1/1 [01:37<00:00, 97.17s/it]
-                   all        128        929          0          0          0          0
-Results saved to [1m/tmp/train_result/exp[0m
-INFO:    Using cached image
-python: can't open file '/home/imagen-hhailu/IMAGEN_Backend/picas_client/data_transfer.py': [Errno 2] No such file or directory
-Command exited with non-zero status 2
-	Command being timed: "./scripts/yolov5.sh  640 2 128"
-	User time (seconds): 916.17
-	System time (seconds): 96.68
-	Percent of CPU this job got: 98%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 17:11.39
-	Average shared text size (kbytes): 0
-	Average unshared data size (kbytes): 0
-	Average stack size (kbytes): 0
-	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 76816008
-	Average resident set size (kbytes): 0
-	Major (requiring I/O) page faults: 1588831
-	Minor (reclaiming a frame) page faults: 5133851
-	Voluntary context switches: 382930
-	Involuntary context switches: 15281
-	Swaps: 0
-	File system inputs: 1860696
-	File system outputs: 1505688
-	Socket messages sent: 0
-	Socket messages received: 0
-	Signals delivered: 0
-	Page size (bytes): 4096
-	Exit status: 2

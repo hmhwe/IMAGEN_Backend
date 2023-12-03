@@ -1,5 +1,0 @@
-WEIGHTS: 
-IMG: 640
-EPOCHS: 2
-BATCH_SIZE: 128
-Command 'git fetch origin' returned non-zero exit status 255.
