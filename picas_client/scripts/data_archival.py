@@ -10,7 +10,7 @@ def adaCommand(token_file, ada_url, ada_command = '--whoami', directory_path = '
     command = ['ada','--tokenfile', token_file, '--api', ada_url, ada_command, directory_path]
     print("Command = ", command)
     try:
-        # Run the ada command and capture the output
+        # Run the ada command 
         result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
 
 
