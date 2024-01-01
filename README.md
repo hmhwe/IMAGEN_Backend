@@ -29,4 +29,4 @@ Building and Pushing Singularity Containers
 
 **Documentation**
 
-- Check docs folder and wiki for weekly presentations and project documentation
+- docs folder and wiki for weekly presentations and project documentation
