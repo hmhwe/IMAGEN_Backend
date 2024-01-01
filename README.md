@@ -26,3 +26,7 @@
 - Run the GitHub Actions workflow on push to main branch
 
 - The workflow checks for changes in definition_files and builds/pushes Singularity containers
+
+**Documentation**
+
+- Check docs folder and wiki for weekly presentations and project documentation
