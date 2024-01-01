@@ -20,9 +20,10 @@ DESTINATION="surfDcache:/yolo_train_result/"
 
 
 #From local
-singularity run ./scripts/yolov5.sif 
+#singularity run ./definition_files/yolov5.sif 
 
 #From sylab repo
-#singularity run library://haftommh/default/yolov5:latest
+singularity run library://haftommh/default/yolov5:latest
+
 
 singularity run library://haftommh/default/data_transfer:latest "$scratch" "$DESTINATION"

@@ -1,0 +1,43 @@
+Bootstrap: docker
+From: nvidia/cuda:10.2-cudnn8-devel
+
+%post
+    apt-get update && apt-get install -y \
+        git \
+        python3 \
+        python3-pip \
+        ffmpeg
+
+
+    # Clone FairMOT repository
+    git clone https://github.com/ifzhang/FairMOT.git /opt/FairMOT
+
+
+    # Create Conda environment
+    cd /opt/FairMOT
+    conda create -n FairMOT python=3.8
+    conda activate FairMOT
+
+
+    # Install dependencies
+    conda install -y pytorch==1.7.0 torchvision==0.8.0 cudatoolkit=10.2 -c pytorch
+    pip install cython
+    pip install -r requirements.txt
+
+
+    # Clone and build DCNv2
+    git clone -b pytorch_1.7 https://github.com/ifzhang/DCNv2.git /opt/DCNv2
+    cd /opt/DCNv2
+    ./make.sh
+
+
+    # Download and organize dataset
+    # ...
+
+    
+%environment
+    export FAIRMOT_ROOT=/opt/FairMOT
+    export PYTHONPATH=$FAIRMOT_ROOT/src:$PYTHONPATH
+
+%runscript   
+    python train.py mot --exp_id "$expID" --batch_size "$Batch_size" --load_model '../models/ctdet_coco_dla_2x.pth' --num_epochs "$Epochs" --lr_step '' --data_cfg '../src/lib/cfg/crowdhuman.json'
