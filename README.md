@@ -8,7 +8,7 @@
 
 - **docs:** Weekly slide presentations and project documentation.
 
-- **picas_client:** Batch scripts for jobs and PiCas Client Python script.
+- **picas_client:** PiCas_Client (Pilot-Jobs) and Batch scripts for jobs
 
 - **requirement.txt:** Project dependencies.
 
@@ -21,7 +21,7 @@
 
 **Usage**
 
-- Building and Pushing Singularity Containers
+Building and Pushing Singularity Containers
 
 - Run the GitHub Actions workflow on push to main branch
 
