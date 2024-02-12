@@ -1,0 +1,62 @@
+Bootstrap: docker
+From: nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update && apt-get install -y \
+        git \
+        python3 \
+        python3-pip \
+        ffmpeg \
+        wget
+
+   # Install Miniconda
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    bash miniconda.sh -b -p /opt/miniconda
+    rm miniconda.sh
+
+    # Activate Miniconda and create Conda environment
+    . /opt/miniconda/etc/profile.d/conda.sh
+  
+    # Create Conda environment
+    cd /opt/FairMOT_Enhanced
+    conda create -n FairMOT python=3.8
+    conda activate FairMOT
+
+    # Install dependencies
+    conda install -y pytorch==1.7.0 torchvision==0.8.0 cudatoolkit=10.2 -c pytorch
+    pip install cython
+    pip install -r /opt/FairMOT_Enhanced/requirements.txt
+
+    conda install -y -c conda-forge opencv
+    pip install opencv-python
+
+
+    # Build DCNv2
+    cd /opt/FairMOT_Enhanced/DCNv2
+    chmod +x make.sh  
+    ./make.sh
+
+    # Download and organize dataset
+    # ...
+
+
+%environment
+    export FAIRMOT_ROOT=/opt/FairMOT_Enhanced
+    export PYTHONPATH=$FAIRMOT_ROOT/src:$PYTHONPATH
+
+%files
+     /home/imagen-hhailu/IMAGEN_Backend/definition_files/FairMOT/* /opt/FairMOT_Enhanced/
+     /home/imagen-hhailu/IMAGEN_Backend/definition_files/FairMOT/requirements.txt /opt/FairMOT_Enhanced/requirements.txt
+
+
+
+%runscript
+    . /opt/miniconda/etc/profile.d/conda.sh
+    conda activate FairMOT
+
+    # Move to the script directory
+    cd /opt/FairMOT_Enhanced/src
+
+    # Run  Python script
+    python3 track.py mot --load_model ../models/fairmot_dla34.pth --conf_thres 0.6
