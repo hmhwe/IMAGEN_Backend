@@ -124,23 +124,6 @@ class TaskScriptMapper:
     def get_task_script(self, task_type):
         return self.task_mapping.get(task_type, None)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Actor(RunActor):
     
     def __init__(self, db, modifier, view1 = "highPriority", view2 = "lowPriority", **viewargs):
