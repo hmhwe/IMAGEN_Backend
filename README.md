@@ -16,16 +16,39 @@
   
 **Instructions**
 
-- Clone the repository.
-- Install dependencies using `pip install -r requirement.txt`.
+- Clone the repository:
 
-**Usage**
 
-Building and Pushing Singularity Containers
+        git clone git@github.com:hmhwe/IMAGEN_Backend.git
+  
+- cd IMAGEN_Backend
+- Install dependencies using
 
-- Run the GitHub Actions workflow on push to main branch
 
-- The workflow checks for changes in definition_files and builds/pushes Singularity containers
+      pip install -r requirement.txt
+    
+  
+  **Steps to run Pilot-Jobs**
+  - cd IMAGEN_Backend/picas_client
+  - Create (install) views in CouchDB for tasks (by default):
+
+         python  createViews.py
+    
+  - Create (install) Views in CouchDB for tasks with priority:
+
+        python  createPriorityViews.py
+
+  **Push tokens via CLI**
+  
+
+      python pushtoken.py  yoloToken.txt
+  
+    
+  **Submit Pilot-Job to SLURM**
+
+
+        sbatch submitPilotJob.sh
+  
 
 **Documentation**
 
