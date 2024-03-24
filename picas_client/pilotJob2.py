@@ -62,10 +62,41 @@ class YOLOv5Processor(TaskProcessor):
 
 # Task processor for Video Synchronization task
 class VideoSynchronizationProcessor(TaskProcessor):
-    def process_task(self, token, task_script):
-        print("Processing Video Synchronization task:", token)
-        # Implement VideoSynch here
+    def __init__(self, modifier):
+        super().__init__(modifier)
 
+    def process_task(self, token, task_script):
+        # Print token information
+        print("-----------------------")
+        print("Working on token: " + token['_id'])
+        for key, value in token.doc.items():
+            print(key, value)
+        print("-----------------------")
+        
+        
+        
+        command = f"/usr/bin/time -v {task_script} \"{token['TestCaseNumber']}\" 2> logs_" + str(token['_id']) + ".err 1> logs_" + str(token['_id']) + ".out"
+        out = execute(command, shell=True)  
+       
+                          
+        # Get the job exit code in the token
+        token['exit_code'] = out[0]
+        token = self.modifier.close(token)
+             
+        # Attach logs in the token
+        curdate = time.strftime("%d/%m/%Y_%H:%M:%S_")
+       
+        try:
+            logsout = "logs_" + str(token['_id']) + ".out"
+            log_handle = open(logsout, 'rb')
+            token.put_attachment(logsout, log_handle.read())
+        
+            logserr = "logs_" + str(token['_id']) + ".err"
+            log_handle = open(logserr, 'rb')
+            token.put_attachment(logserr, log_handle.read())
+       
+        except:
+            pass  
 
 
 # Task processor factory
@@ -73,7 +104,7 @@ class TaskProcessorFactory:
     def create_processor(self, task_type, modifier):
         if task_type == "YOLOv5":
             return YOLOv5Processor(modifier)
-        elif task_type == "Video_Synchronization":
+        elif task_type == "datacleaning":
             return VideoSynchronizationProcessor(modifier)
         # Add more processors for other task types
         
@@ -84,7 +115,7 @@ class TaskScriptMapper:
     def __init__(self):
         self.task_mapping = {
             "YOLOv5": "./scripts/yolov5.sh",
-            "Video_Synchronization": "./scripts/data_cleaning.sh",
+            "datacleaning": "./scripts/data_cleaning.sh",
         }
 
     def get_task_script(self, task_type):
