@@ -11,19 +11,16 @@ echo "IMG: $IMG"
 echo "EPOCHS: $EPOCHS"
 echo "BATCH_SIZE: $BATCH_SIZE"
 
+#Raw_Data in dCache
+SOURCE="surfDcache:/Raw_Data/" 
 
 #Directory in scratch
-scratch="$TMPDIR"/train_result
+scratch="$TMPDIR"/IMAGEN_TMP
 
 #Training results in dCache
-DESTINATION="surfDcache:/yolo_train_result/" 
-
-
-#From local
-#singularity run ./definition_files/yolov5.sif 
+DESTINATION="surfDcache:/Training_Result_Data/" 
 
 #From sylab repo
 singularity run library://haftommh/default/yolov5:latest
-
 
 singularity run library://haftommh/default/data_transfer:latest "$scratch" "$DESTINATION"

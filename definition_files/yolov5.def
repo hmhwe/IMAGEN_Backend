@@ -28,4 +28,4 @@ From: nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
 %runscript
   
     # Use the environment variables set in the batch script
-    python3 /yolov5/train.py --data /yolov5/data/coco128.yaml --epochs "$EPOCHS" --weights "$WEIGHTS" --img "$IMG" --batch-size "$BATCH_SIZE" --cfg /yolov5/models/yolov5m.yaml --project "$TMPDIR"/train_result
+    python3 /yolov5/train.py --data /yolov5/data/coco128.yaml --epochs "$EPOCHS" --weights "$WEIGHTS" --img "$IMG" --batch-size "$BATCH_SIZE" --cfg /yolov5/models/yolov5m.yaml --project "$TMPDIR"/IMAGEN_TMP

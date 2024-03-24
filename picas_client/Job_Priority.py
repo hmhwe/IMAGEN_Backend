@@ -118,7 +118,7 @@ class TaskScriptMapper:
     def __init__(self):
         self.task_mapping = {
             "YOLOv5": "./scripts/yolov5.sh",
-            "datacleaning": "./scripts/data_cleaning.sh",
+            "datacleaning": "./scripts/video_synchronization.sh",
         }
 
     def get_task_script(self, task_type):

@@ -5,5 +5,5 @@
 
 cd $PWD
 
-python3 pilotJob2.py
+python3 Job1.py
 

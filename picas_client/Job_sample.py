@@ -24,8 +24,8 @@ class Actor(RunActor):
         
         
         self.script_mapping = {
-            "YOLOv5": "./yolov5/yolov5.sh",
-            "Video_Synchronization": "/dataCleaning/data_cleaning.sh",
+            "YOLOv5": "./scripts/yolov5.sh",
+            "datacleaning": "/scripts/video_synchronization.sh",
             # Add mappings here 
         }
         
