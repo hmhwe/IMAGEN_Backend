@@ -87,11 +87,10 @@ class Actor(RunActor):
            
         if task_name == "YOLOv5":
             self.process_yolov5_task(token, task_name)
-        elif task_name == "Video_Synchronization":
+        elif task_name == "datacleaning":
             self.process_cleaning_task(token, task_name)
         # Add more statements for other task types
         
-       
             
             
          
@@ -103,8 +102,7 @@ class Actor(RunActor):
         """
         return self.timer.elapsed() > elapsed
 
-     
-        
+           
         
         
 def main():
